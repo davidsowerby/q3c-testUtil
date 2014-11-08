@@ -1,22 +1,31 @@
-//build for testutil
-apply from: 'http://plugins.jasoft.fi/vaadin.plugin'
+//build for testUtil
+apply plugin: 'java'
 
-//see http://stackoverflow.com/questions/5144325/gradle-test-dependency
-//the testJar, configurations and artifacts closure enable tests in other projects to use these tests
-//see the demo project or testApp project fopr examples
-task testJar(type: Jar, dependsOn: testClasses) {
-    baseName = "test-${project.archivesBaseName}"
-    from sourceSets.test.output
+
+project.ext.vaadinVersion = '7.3.4'
+project.ext.guiceVersion = '3.0'
+
+
+version = '0.7'
+
+jar {
+    libsDirName = "/home/david/jars"
 }
 
-configurations {
-    tests
+repositories {
+    mavenCentral()
 }
 
-artifacts {
-    tests testJar
-}
 
 dependencies {
-    compile 'com.vaadin:vaadin-server:' + vaadinVersion
+
+    //Dependency Injection
+    compile 'com.google.inject:guice:' + guiceVersion
+
+
+    //Logging
+    compile 'org.slf4j:slf4j-api:1.6.6'
+    compile 'org.slf4j:slf4j-log4j12:1.6.6'
+
+
 }
