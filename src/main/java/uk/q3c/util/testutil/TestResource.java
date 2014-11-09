@@ -11,7 +11,7 @@
  * the specific language governing permissions and limitations under the License.
  */
 
-package uk.q3c.krail.testutil;
+package uk.q3c.util.testutil;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -21,7 +21,7 @@ import java.nio.file.Paths;
  * A couple of helper methods to ensure that the correct directory is looked up for file related test operations. This
  * is useful mainly because of the difference between IDEA and Eclipse in their treatment of 'master' and 'sub'
  * projects
- * ... IDEA uses a different project path to Eclipse (IDEA runs from the root project, 'krail') see
+ * ... IDEA uses a different project path to Eclipse (IDEA runs from the root project, 'util') see
  * https://github.com/davidsowerby/krail/issues/253
  *
  * @author dsowerby
