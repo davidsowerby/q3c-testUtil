@@ -12,7 +12,6 @@
  */
 package uk.q3c.util.testutil;
 
-import com.google.inject.Inject;
 import org.apache.log4j.Appender;
 import org.apache.log4j.Layout;
 import org.apache.log4j.Level;
@@ -28,8 +27,7 @@ import java.util.Map;
 
 /**
  * Uses an in-memory appender to to capture log output during testing. Be sure to call {@link #close()} in your
- * teardown
- * method, or it will eat up your memory.
+ * teardown method, or it will eat up your memory.
  *
  * @author David Sowerby
  * @date 12 May 2014
@@ -39,7 +37,6 @@ public class LogMonitor {
     private static Logger log = Logger.getRootLogger();
     private final MemoryAppender appender;
 
-    @Inject
     public LogMonitor() {
         appender = new MemoryAppender();
         log.addAppender(appender);
