@@ -109,9 +109,13 @@ public class LogMonitor {
             return "In memory appender";
         }
 
+        /**
+         * Not used, getName() is fixed
+         *
+         * @param name
+         */
         @Override
         public void setName(String name) {
-            // TODO Auto-generated method stub
 
         }
 
