@@ -2,6 +2,14 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../krail/krail.iml" filepath="$PROJECT_DIR$/../krail/krail.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../krail-bench/krail-bench.iml" filepath="$PROJECT_DIR$/../krail-bench/krail-bench.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../krail-demo/krail-demo.iml" filepath="$PROJECT_DIR$/../krail-demo/krail-demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../krail-jpa/krail-jpa.iml" filepath="$PROJECT_DIR$/../krail-jpa/krail-jpa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../master/krail-master.iml" filepath="$PROJECT_DIR$/../master/krail-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../krail-quartz/krail-quartz.iml" filepath="$PROJECT_DIR$/../krail-quartz/krail-quartz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../krail-testApp/krail-testApp.iml" filepath="$PROJECT_DIR$/../krail-testApp/krail-testApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../krail-testUtil/krail-testUtil.iml" filepath="$PROJECT_DIR$/../krail-testUtil/krail-testUtil.iml" />
       <module fileurl="file://$PROJECT_DIR$/q3c-testUtil.iml" filepath="$PROJECT_DIR$/q3c-testUtil.iml" />
     </modules>
   </component>

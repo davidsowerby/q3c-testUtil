@@ -31,16 +31,31 @@
     <entry_points version="2.0" />
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/../krail" />
+    <file type="web" url="file://$PROJECT_DIR$/../krail-bench" />
+    <file type="web" url="file://$PROJECT_DIR$/../krail-demo" />
+    <file type="web" url="file://$PROJECT_DIR$/../krail-jpa" />
+    <file type="web" url="file://$PROJECT_DIR$/../krail-quartz" />
+    <file type="web" url="file://$PROJECT_DIR$/../krail-testApp" />
+    <file type="web" url="file://$PROJECT_DIR$/../krail-testUtil" />
+    <file type="web" url="file://$PROJECT_DIR$/../master" />
     <file type="web" url="file://$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
     <option name="modificationStamps">
       <map>
         <entry key="$PROJECT_DIR$/../krail-demo" value="1418750947611" />
+        <entry key="$PROJECT_DIR$/../krail-jpa" value="1420310434962" />
+        <entry key="$PROJECT_DIR$/../krail-master" value="5682066508755" />
         <entry key="$PROJECT_DIR$/../krail-quartz" value="1415722305638" />
         <entry key="$PROJECT_DIR$/../krail-testApp" value="1415712741750" />
         <entry key="$PROJECT_DIR$/../krail-testUtil" value="1419370020701" />
-        <entry key="$PROJECT_DIR$" value="1419430563755" />
+        <entry key="$PROJECT_DIR$/../master" value="1422096724490" />
+        <entry key="$PROJECT_DIR$/../q3c-gradle" value="1421953238824" />
+        <entry key="$PROJECT_DIR$" value="14218902029562" />
+        <entry key="$PROJECT_DIR$/../release-manager" value="1420389470962" />
+        <entry key="$PROJECT_DIR$/../twitloader/twitloader" value="1384255512808" />
+        <entry key="$USER_HOME$/temp/rebuild/q3c-gradle" value="1421953660050" />
       </map>
     </option>
   </component>
@@ -57,7 +72,7 @@
   <component name="ProjectModuleManager">
     <modules />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="PropertiesComponent">
