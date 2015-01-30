@@ -1,5 +1,6 @@
 // all defined in master
 description = 'Generic test utilities'
+group = 'uk.q3c'
 
 
 
