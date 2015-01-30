@@ -15,9 +15,10 @@ public class FileTestUtil {
 
     /**
      * Make a line by line comparison of the text files provided at {@code file1} and {@code file2}.  If they are not
-     * the same, the comparison stops at the first mis-match and returns a {@link TestResult} with pass=false.  Lines
-     * given in {@code ignore} are not compared - this can be useful, for example, where a line contains a timestamp.
-     * Even when a line is ignored for comparison, it must exist in both files for match to succeed.
+     * the same, the comparison stops at the first mis-match and returns an Optional<String> containing a description
+     * of the failure.  Lines given in {@code ignore} are not compared - this can be useful, for example, where a
+     * line contains a timestamp. Even when a line is ignored for comparison, it must exist in both files for match
+     * to succeed.
      *
      * @param ignore
      *         optional lines to ignore
@@ -25,6 +26,8 @@ public class FileTestUtil {
      *         the first file used in comparison
      * @param file2
      *         the second file used in comparison
+     *
+     * @return an empty Optional if match successful, otherwise a description of the failure
      *
      * @throws IOException
      */
