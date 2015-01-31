@@ -15,6 +15,9 @@ This version removes the IDEA project files from Git, and moves a couple of clas
 
 #### Detail
 
+Release notes and version.properties generated
+
+---
 *Merge branch 'master' into develop*
 
 Conflicts:
