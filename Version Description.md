@@ -1,1 +1,1 @@
-This version removes the IDEA project files from Git, and moves a couple of classes in from the krail core
+This version adds gitattributes file, no functional changes
