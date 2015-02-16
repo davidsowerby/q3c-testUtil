@@ -1,1 +1,1 @@
-This version adds gitattributes file, no functional changes
+This version modified the TestResource class to be more robust. Adds gitattributes file
