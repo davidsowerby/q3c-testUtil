@@ -1,10 +1,8 @@
 /*
- * Copyright (C) 2014 David Sowerby
+ * Copyright (c) 2015. David Sowerby
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
- * the License. You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
@@ -42,18 +40,6 @@ public class LogMonitor {
         log.addAppender(appender);
     }
 
-    public List<String> infoLogs() {
-        return appender.logs.get(Level.INFO);
-    }
-
-    public List<String> warnLogs() {
-        return appender.logs.get(Level.WARN);
-    }
-
-    public List<String> errorLogs() {
-        return appender.logs.get(Level.ERROR);
-    }
-
     public List<String> debugLogs() {
         return appender.logs.get(Level.DEBUG);
     }
@@ -66,12 +52,44 @@ public class LogMonitor {
         log.removeAppender(appender);
     }
 
+    public void addClassFilter(Class<?> classToAccept) {
+        ClassAcceptFilter filter = new ClassAcceptFilter(classToAccept);
+        appender.addFilter(filter);
+
+    }
+
+    public int errorCount() {
+        return errorLogs().size();
+    }
+
+    public List<String> errorLogs() {
+        return appender.logs.get(Level.ERROR);
+    }
+
+    public int warnCount() {
+        return warnLogs().size();
+    }
+
+    public List<String> warnLogs() {
+        return appender.logs.get(Level.WARN);
+    }
+
+    public int infoCount() {
+        return infoLogs().size();
+    }
+
+    public List<String> infoLogs() {
+        return appender.logs.get(Level.INFO);
+    }
+
     class MemoryAppender implements Appender {
 
+        LinkedList<Filter> filters;
         Map<Level, List<String>> logs;
 
         protected MemoryAppender() {
             super();
+            filters = new LinkedList<>();
             logs = new HashMap<>();
             logs.put(Level.TRACE, new LinkedList<String>());
             logs.put(Level.DEBUG, new LinkedList<String>());
@@ -82,26 +100,40 @@ public class LogMonitor {
 
         @Override
         public void addFilter(Filter newFilter) {
+            filters.add(newFilter);
         }
 
         @Override
         public Filter getFilter() {
-            return null;
+            throw new RuntimeException("not yet implemented");
         }
 
         @Override
         public void clearFilters() {
+            filters.clear();
         }
 
         @Override
         public void close() {
             logs.clear();
+            filters.clear();
         }
 
         @Override
         public void doAppend(LoggingEvent event) {
             List<String> list = logs.get(event.getLevel());
-            list.add(event.getRenderedMessage());
+            if (acceptedByAFilter(event)) {
+                list.add(event.getRenderedMessage());
+            }
+        }
+
+        private boolean acceptedByAFilter(LoggingEvent event) {
+            for (Filter filter : filters) {
+                if (filter.decide(event) == Filter.ACCEPT) {
+                    return true;
+                }
+            }
+            return false;
         }
 
         @Override
@@ -121,23 +153,25 @@ public class LogMonitor {
 
         @Override
         public ErrorHandler getErrorHandler() {
-            return null;
+            throw new RuntimeException("not yet implemented");
         }
 
         @Override
         public void setErrorHandler(ErrorHandler errorHandler) {
-
+            throw new RuntimeException("not yet implemented");
         }
 
         @Override
         public Layout getLayout() {
-            return null;
+            throw new RuntimeException("not yet implemented");
         }
 
         @Override
         public void setLayout(Layout layout) {
-
+            throw new RuntimeException("not yet implemented");
         }
+
+
 
         @Override
         public boolean requiresLayout() {
