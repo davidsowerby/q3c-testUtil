@@ -1,1 +1,1 @@
-This version modified the TestResource class to be more robust. Adds gitattributes file
+This version adds a ClassAcceptFilter to LogMonitor to reduce memory usage
