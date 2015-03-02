@@ -11,13 +11,14 @@
 
 package uk.q3c.util.testutil;
 
-import org.apache.log4j.spi.Filter;
-import org.apache.log4j.spi.LoggingEvent;
+import ch.qos.logback.classic.spi.LoggingEvent;
+import ch.qos.logback.core.filter.Filter;
+import ch.qos.logback.core.spi.FilterReply;
 
 /**
  * Created by David Sowerby on 22/02/15.
  */
-public class ClassAcceptFilter extends Filter {
+public class ClassAcceptFilter extends Filter<LoggingEvent> {
 
     private String acceptClassName;
 
@@ -39,13 +40,12 @@ public class ClassAcceptFilter extends Filter {
      * @return decision The decision of the filter.
      */
     @Override
-    public int decide(LoggingEvent event) {
-        if (event.getLogger()
-                 .getName()
+    public FilterReply decide(LoggingEvent event) {
+        if (event.getLoggerName()
                  .equals(acceptClassName)) {
-            return Filter.ACCEPT;
+            return FilterReply.ACCEPT;
         } else {
-            return Filter.NEUTRAL;
+            return FilterReply.NEUTRAL;
         }
     }
 }

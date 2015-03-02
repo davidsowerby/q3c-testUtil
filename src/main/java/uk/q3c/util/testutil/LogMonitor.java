@@ -10,13 +10,14 @@
  */
 package uk.q3c.util.testutil;
 
-import org.apache.log4j.Appender;
-import org.apache.log4j.Layout;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-import org.apache.log4j.spi.ErrorHandler;
-import org.apache.log4j.spi.Filter;
-import org.apache.log4j.spi.LoggingEvent;
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.AppenderBase;
+import ch.qos.logback.core.filter.Filter;
+import ch.qos.logback.core.spi.FilterReply;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -31,12 +32,14 @@ import java.util.Map;
  * @date 12 May 2014
  */
 public class LogMonitor {
-
-    private static Logger log = Logger.getRootLogger();
-    private final MemoryAppender appender;
+    private final MemoryAppender<ILoggingEvent> appender;
+    private Logger log;
 
     public LogMonitor() {
+        LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
+        log = lc.getLogger(Logger.ROOT_LOGGER_NAME);
         appender = new MemoryAppender();
+        appender.start();
         log.addAppender(appender);
     }
 
@@ -49,7 +52,7 @@ public class LogMonitor {
     }
 
     public void close() {
-        log.removeAppender(appender);
+        log.detachAppender(appender);
     }
 
     public void addClassFilter(Class<?> classToAccept) {
@@ -82,7 +85,7 @@ public class LogMonitor {
         return appender.logs.get(Level.INFO);
     }
 
-    class MemoryAppender implements Appender {
+    class MemoryAppender<E extends ILoggingEvent> extends AppenderBase<E> {
 
         LinkedList<Filter> filters;
         Map<Level, List<String>> logs;
@@ -103,33 +106,24 @@ public class LogMonitor {
             filters.add(newFilter);
         }
 
-        @Override
-        public Filter getFilter() {
-            throw new RuntimeException("not yet implemented");
-        }
 
-        @Override
-        public void clearFilters() {
-            filters.clear();
-        }
 
-        @Override
         public void close() {
             logs.clear();
             filters.clear();
         }
 
         @Override
-        public void doAppend(LoggingEvent event) {
+        public void append(E event) {
             List<String> list = logs.get(event.getLevel());
             if (acceptedByAFilter(event)) {
-                list.add(event.getRenderedMessage());
+                list.add(event.getFormattedMessage());
             }
         }
 
-        private boolean acceptedByAFilter(LoggingEvent event) {
+        private boolean acceptedByAFilter(E event) {
             for (Filter filter : filters) {
-                if (filter.decide(event) == Filter.ACCEPT) {
+                if (filter.decide(event) == FilterReply.ACCEPT) {
                     return true;
                 }
             }
@@ -141,6 +135,7 @@ public class LogMonitor {
             return "In memory appender";
         }
 
+
         /**
          * Not used, getName() is fixed
          *
@@ -151,32 +146,7 @@ public class LogMonitor {
 
         }
 
-        @Override
-        public ErrorHandler getErrorHandler() {
-            throw new RuntimeException("not yet implemented");
-        }
 
-        @Override
-        public void setErrorHandler(ErrorHandler errorHandler) {
-            throw new RuntimeException("not yet implemented");
-        }
-
-        @Override
-        public Layout getLayout() {
-            throw new RuntimeException("not yet implemented");
-        }
-
-        @Override
-        public void setLayout(Layout layout) {
-            throw new RuntimeException("not yet implemented");
-        }
-
-
-
-        @Override
-        public boolean requiresLayout() {
-            return false;
-        }
 
     }
 
