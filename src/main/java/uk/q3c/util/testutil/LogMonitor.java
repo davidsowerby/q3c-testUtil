@@ -52,6 +52,7 @@ public class LogMonitor {
     }
 
     public void close() {
+        appender.logs.clear();
         log.detachAppender(appender);
     }
 
