@@ -1,1 +1,1 @@
-This version adds a ClassAcceptFilter to LogMonitor to reduce memory usage
+Trivial change to LogMonitor, logging moved to Logback
