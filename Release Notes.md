@@ -1,15 +1,14 @@
-### Release Notes for q3c-testUtil 0.7.5
+### Release Notes for q3c-testUtil 0.7.6
 
-This version adds a ClassAcceptFilter to LogMonitor to reduce memory usage
+Trivial change to LogMonitor, logging moved to Logback
 
 #### Change log
 
--   [6](https://github.com/davidsowerby/q3c-testUtil/issues/6): filter for classe(es) under test
 
 
 #### Dependency changes
 
-   compile dependency version changed to: krail:0.8.1
+   compile dependency version changed to: krail:0.9.0
 
 #### Detail
 
@@ -17,9 +16,13 @@ This version adds a ClassAcceptFilter to LogMonitor to reduce memory usage
 
 
 ---
-*Fix [6](https://github.com/davidsowerby/q3c-testUtil/issues/6) Added ClassAcceptFilter to LogMonitor*
+*Added an appender.clear() to the close() method of LogMonitor*
 
-By default the LogMonitor will now only log events from specified classes
+
+---
+*See [krail 304](https://github.com/davidsowerby/krail/issues/304) Change to logback*
+
+LogMonitor reworked to use Logback
 
 
 ---
