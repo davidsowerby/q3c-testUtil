@@ -1,6 +1,6 @@
 ### Release Notes for q3c-testUtil 0.7.7
 
-Trivial change to LogMonitor, logging moved to Logback
+Dependency changes only
 
 #### Change log
 

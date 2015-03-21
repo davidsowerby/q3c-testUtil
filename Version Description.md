@@ -1,1 +1,1 @@
-Trivial change to LogMonitor, logging moved to Logback
+Dependency changes only
