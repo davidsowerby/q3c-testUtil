@@ -1,4 +1,4 @@
-### Release Notes for q3c-testUtil 0.7.7
+### Release Notes for q3c-testUtil 0.7.8
 
 Dependency changes only
 
@@ -8,7 +8,7 @@ Dependency changes only
 
 #### Dependency changes
 
-   compile dependency version changed to: krail:0.9.1
+   compile dependency version changed to: krail:0.9.2
 
 #### Detail
 
