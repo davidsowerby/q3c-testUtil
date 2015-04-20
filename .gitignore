@@ -1,18 +1,17 @@
-/.gradle
-/.idea
-/.settings
-/bin
-/build
-/gradle
-/logs
-/out
+.gradle
+.idea
+.settings
+bin
+build
+gradle
+logs
+out
 
-/.q3c-testUtil.iml
+.q3c-testUtil.iml
 
 build.gradle~
 git.ignore~
 
-/.classpath
-/.project
-/.gradle
-/error-screenshots
+.classpath
+.project
+error-screenshots
