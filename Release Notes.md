@@ -8,7 +8,7 @@ Partial file comparison methods added. bintrayUpload attribute added to build
 
 #### Dependency changes
 
-   compile dependency version changed to: krail:0.9.4
+   compile dependency version changed to: krail:0.9.5
 
 #### Detail
 
