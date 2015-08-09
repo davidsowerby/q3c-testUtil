@@ -14,7 +14,7 @@ repositories {
 ```
 
 ```
-'uk.q3c:q3c-testUtil:0.7.10'
+'uk.q3c:q3c-testUtil:0.7.11'
 ```
 ##Maven
 
@@ -30,7 +30,7 @@ repositories {
 <dependency>
 	<groupId>uk.q3c</groupId>
 	<artifactId>q3c-testUtil</artifactId>
-	<version>0.7.10</version>
+	<version>0.7.11</version>
 </dependency>
 ```
 ##Direct

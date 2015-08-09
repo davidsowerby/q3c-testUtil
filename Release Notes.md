@@ -1,4 +1,4 @@
-### Release Notes for q3c-testUtil 0.7.10
+### Release Notes for q3c-testUtil 0.7.11
 
 Partial file comparison methods added. bintrayUpload attribute added to build 
 
@@ -8,7 +8,7 @@ Partial file comparison methods added. bintrayUpload attribute added to build
 
 #### Dependency changes
 
-   compile dependency version changed to: krail:0.9.5
+   compile dependency version changed to: krail:0.9.6
 
 #### Detail
 
