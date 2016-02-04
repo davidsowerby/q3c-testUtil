@@ -1,1 +1,1 @@
-Partial file comparison methods added. bintrayUpload attribute added to build 
+Separated from master project and prepared for Travis
