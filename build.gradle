@@ -11,12 +11,31 @@
  *
  */
 
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenLocal()
+    }
+
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.5'
+//        classpath 'commons-io:commons-io:2.4'
+        classpath 'uk.q3c:q3c-gradle:0.7.3'
+    }
+}
+
+
+apply plugin: 'com.jfrog.bintray'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
 apply plugin: 'java'
 apply plugin: 'project-report'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'idea'
+apply plugin: 'q3c-release'
+
+
 description = 'Generic test utilities'
 group = 'uk.q3c'
 version = '0.8.0'
@@ -29,6 +48,8 @@ ext.slf4jVersion = '1.7.6'
 
 
 sourceCompatibility = '1.8'
+
+
 
 repositories {
     mavenLocal()
@@ -112,6 +133,29 @@ artifacts {
 
 javadoc {
     failOnError = false
+}
+
+task verifyRelease(type: uk.q3c.gradle.VerificationTask) {
+
+}
+
+task prepareRelease(type: uk.q3c.gradle.PrepareReleaseTask) {
+
+}
+
+task release(type: uk.q3c.gradle.ReleaseTask) {
+
+}
+
+def versionFromFile(File projectRoot) {
+    def Properties props = new Properties()
+    def propFile = new File(projectRoot, 'version.properties')
+    if (propFile.canRead()) {
+        props.load(new FileInputStream(propFile))
+    }
+    String key = "CURRENT_VERSION"
+    println(projectRoot.getName() + ": version is " + props[key])
+    props[key]
 }
 
 
