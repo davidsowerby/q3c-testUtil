@@ -152,13 +152,7 @@ task release(type: uk.q3c.gradle.ReleaseTask) {
 
 bintray {
     user = 'dsowerby'
-    try {
-        key = bintrayKey
-    }
-    catch (Exception e) {
-        println 'Bintray key not found, not on push platform'
-        //do nothing
-    }
+    key = getKeyForBintray()
 
     publications = ['mavenStuff'] //When uploading Maven-based publication files
     dryRun = true  //project.ext.bintrayDryRun //Whether to run this as dry-run, without deploying
@@ -198,6 +192,16 @@ def versionFromFile(File projectRoot) {
     props[key]
 }
 
+def getKeyForBintray() {
+    def keyValue = System.getenv("BINTRAY")
+    if (keyValue == null) {
+        println 'returning no'
+        return 'no'
+    } else {
+        println 'returning bintray key: ' + bintrayKey
+        return bintrayKey
+    }
+}
 
 
 
