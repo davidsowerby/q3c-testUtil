@@ -20,7 +20,7 @@ buildscript {
 
     dependencies {
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.5'
-//        classpath 'commons-io:commons-io:2.4'
+        classpath 'commons-io:commons-io:2.4'
         classpath 'uk.q3c:q3c-gradle:0.7.3'
     }
 }
@@ -46,6 +46,9 @@ ext.groovyVersion = '2.4.1'
 ext.guavaVersion = '19.0'
 ext.slf4jVersion = '1.7.6'
 
+
+ext.versionDescription = 'No version description provided'
+ext.releaseDate = new Date()
 
 sourceCompatibility = '1.8'
 
@@ -145,6 +148,37 @@ task prepareRelease(type: uk.q3c.gradle.PrepareReleaseTask) {
 
 task release(type: uk.q3c.gradle.ReleaseTask) {
 
+}
+
+bintray {
+    user = 'dsowerby'
+    key = bintrayKey
+
+    publications = ['mavenStuff'] //When uploading Maven-based publication files
+    dryRun = true  //project.ext.bintrayDryRun //Whether to run this as dry-run, without deploying
+    publish = true //If version should be auto published after an upload
+    pkg {
+        repo = 'maven'
+//        userOrg = 'myorg' //An optional organization name when the repo belongs to one of the user's orgs
+        name = project.name
+        desc = project.description
+        websiteUrl = 'https://github.com/davidsowerby/' + project.name
+        issueTrackerUrl = websiteUrl + '/issues'
+        vcsUrl = websiteUrl + '.git'
+        licenses = ['Apache-2.0']
+        labels = ['vaadin', 'guice']
+        publicDownloadNumbers = true
+        //Optional version descriptor
+        version {
+            name = project.version
+            desc = project.ext.versionDescription
+            released = project.ext.releaseDate
+            //'optional, date of the version release' //2 possible values: date in the format of 'yyyy-MM-dd'T'HH:mm:ss.SSSZZ' OR a java.util.Date instance
+            mavenCentralSync {
+                sync = false //Optional (true by default). Determines whether to sync the version to Maven Central.
+            }
+        }
+    }
 }
 
 def versionFromFile(File projectRoot) {
