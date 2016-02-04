@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
+ *
  * Created by David Sowerby on 16/11/14.
  */
 public class FileTestUtil {
@@ -35,7 +36,7 @@ public class FileTestUtil {
      * to succeed.
      *
      * @param ignore
-     *         optional lines to ignore
+     *         optional lines to ignore, index starting at 0
      * @param file1
      *         the first file used in comparison
      * @param file2
@@ -57,7 +58,7 @@ public class FileTestUtil {
      * comparison, it must exist in both files for match to succeed.
      *
      * @param ignore
-     *         optional lines to ignore
+     *         optional lines to ignore, index starting at 0
      * @param file1
      *         the first file used in comparison
      * @param file2

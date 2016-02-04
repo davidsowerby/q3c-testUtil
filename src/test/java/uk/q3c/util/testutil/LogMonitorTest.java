@@ -11,9 +11,10 @@
 
 package uk.q3c.util.testutil;
 
-import com.google.inject.Inject;
 import com.mycila.testing.junit.MycilaJunitRunner;
 import com.mycila.testing.plugin.guice.GuiceContext;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -27,8 +28,17 @@ public class LogMonitorTest {
 
     private static Logger log = LoggerFactory.getLogger(LogMonitorTest.class);
 
-    @Inject
     LogMonitor logMonitor;
+
+    @Before
+    public void setup() {
+        logMonitor = new LogMonitor();
+    }
+
+    @After
+    public void teardown() {
+        logMonitor.close();
+    }
 
 
     @Test
@@ -39,6 +49,9 @@ public class LogMonitorTest {
         log.error("error");
         //then
         assertThat(logMonitor.errorCount()).isEqualTo(1);
+        assertThat(logMonitor.warnCount()).isEqualTo(0);
+        assertThat(logMonitor.getLog()
+                             .getAppender("In memory appender")).isNotNull();
     }
 
     @Test
@@ -49,5 +62,53 @@ public class LogMonitorTest {
         log.warn("warn");
         //then
         assertThat(logMonitor.warnCount()).isEqualTo(1);
+    }
+
+    @Test
+    public void info() {
+        //given
+        logMonitor.addClassFilter(this.getClass());
+        //when
+        log.info("info");
+        //then
+        assertThat(logMonitor.infoCount()).isEqualTo(1);
+    }
+
+    @Test
+    public void debug() {
+        //given
+        logMonitor.addClassFilter(this.getClass());
+        //when
+        log.debug("debug");
+        //then
+        assertThat(logMonitor.debugCount()).isEqualTo(1);
+    }
+
+    @Test
+    public void trace() {
+        //given
+        logMonitor.addClassFilter(this.getClass());
+        //when
+        log.trace("trace");
+        //then
+        assertThat(logMonitor.traceCount()).isEqualTo(1);
+    }
+
+    @Test
+    public void close() throws Exception {
+        // given
+        logMonitor.addClassFilter(this.getClass());
+        log.debug("debug");
+        //when
+        logMonitor.close();
+        //then
+        assertThat(logMonitor.debugCount()).isEqualTo(0);
+        assertThat(logMonitor.infoCount()).isEqualTo(0);
+        assertThat(logMonitor.warnCount()).isEqualTo(0);
+        assertThat(logMonitor.errorCount()).isEqualTo(0);
+        assertThat(logMonitor.getClassFilters()).isEmpty();
+        assertThat(logMonitor.getLog()
+                             .getAppender("In memory appender")).isNull();
+
     }
 }

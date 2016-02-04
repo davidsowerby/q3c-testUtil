@@ -19,6 +19,7 @@ import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
 import ch.qos.logback.core.filter.Filter;
 import ch.qos.logback.core.spi.FilterReply;
+import com.google.common.collect.ImmutableList;
 import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
@@ -40,6 +41,7 @@ public class LogMonitor {
     public LogMonitor() {
         LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
         log = lc.getLogger(Logger.ROOT_LOGGER_NAME);
+        log.setLevel(Level.TRACE);
         appender = new MemoryAppender();
         appender.start();
         log.addAppender(appender);
@@ -53,8 +55,12 @@ public class LogMonitor {
         return appender.logs.get(Level.TRACE);
     }
 
+    public int traceCount() {
+        return traceLogs() == null ? 0 : traceLogs().size();
+    }
+
     public void close() {
-        appender.logs.clear();
+        appender.close();
         log.detachAppender(appender);
     }
 
@@ -65,7 +71,7 @@ public class LogMonitor {
     }
 
     public int errorCount() {
-        return errorLogs().size();
+        return errorLogs() == null ? 0 : errorLogs().size();
     }
 
     public List<String> errorLogs() {
@@ -73,7 +79,7 @@ public class LogMonitor {
     }
 
     public int warnCount() {
-        return warnLogs().size();
+        return warnLogs() == null ? 0 : warnLogs().size();
     }
 
     public List<String> warnLogs() {
@@ -81,11 +87,23 @@ public class LogMonitor {
     }
 
     public int infoCount() {
-        return infoLogs().size();
+        return infoLogs() == null ? 0 : infoLogs().size();
     }
 
     public List<String> infoLogs() {
         return appender.logs.get(Level.INFO);
+    }
+
+    public int debugCount() {
+        return debugLogs() == null ? 0 : debugLogs().size();
+    }
+
+    public ImmutableList<Filter> getClassFilters() {
+        return ImmutableList.copyOf(appender.filters);
+    }
+
+    public Logger getLog() {
+        return log;
     }
 
     static class MemoryAppender<E extends ILoggingEvent> extends AppenderBase<E> {
@@ -102,13 +120,13 @@ public class LogMonitor {
             logs.put(Level.INFO, new LinkedList<String>());
             logs.put(Level.WARN, new LinkedList<String>());
             logs.put(Level.ERROR, new LinkedList<String>());
+            setName("In memory appender");
         }
 
         @Override
         public void addFilter(Filter newFilter) {
             filters.add(newFilter);
         }
-
 
 
         public void close() {
@@ -132,24 +150,6 @@ public class LogMonitor {
             }
             return false;
         }
-
-        @Override
-        public String getName() {
-            return "In memory appender";
-        }
-
-
-        /**
-         * Not used, getName() is fixed
-         *
-         * @param name
-         */
-        @Override
-        public void setName(String name) {
-
-        }
-
-
 
     }
 
