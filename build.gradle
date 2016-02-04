@@ -152,7 +152,13 @@ task release(type: uk.q3c.gradle.ReleaseTask) {
 
 bintray {
     user = 'dsowerby'
-    key = bintrayKey
+    try {
+        key = bintrayKey
+    }
+    catch (Exception e) {
+        println 'Bintray key not found, not on push platform'
+        //do nothing
+    }
 
     publications = ['mavenStuff'] //When uploading Maven-based publication files
     dryRun = true  //project.ext.bintrayDryRun //Whether to run this as dry-run, without deploying
