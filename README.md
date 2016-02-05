@@ -1,7 +1,6 @@
 #q3c-testUtil
 
-[![Build Status](https://travis-ci.org/davidsowerby/q3c-testUtil.svg?branch=master)](https://travis-ci.org/davidsowerby/q3c-testUtil)
-[![Coverage Status](https://coveralls.io/repos/github/davidsowerby/q3c-testUtil/badge.svg?branch=master)](https://coveralls.io/github/davidsowerby/q3c-testUtil?branch=master)
+Some general purpose test utilities
 
 #Download
 <a href='https://bintray.com/dsowerby/maven/q3c-testUtil/view?source=watch' alt='Get automatic notifications about new "q3c-testUtil" versions'><img src='https://www.bintray.com/docs/images/bintray_badge_color.png'></a>
