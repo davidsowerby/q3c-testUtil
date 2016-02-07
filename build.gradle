@@ -195,8 +195,8 @@ def versionFromFile(File projectRoot) {
 def getKeyForBintray() {
     def keyValue = System.getenv("BINTRAY")
     if (keyValue == null) {
-        println 'returning no'
-        return 'no'
+        println 'returning no bintray key'
+        return 'no bintray key'
     } else {
         println 'returning bintray key: '
         return bintrayKey
