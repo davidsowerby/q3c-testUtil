@@ -1,5 +1,8 @@
 #q3c-testUtil
 
+[![Build Status](https://travis-ci.org/davidsowerby/q3c-testUtil.svg?branch=master)](https://travis-ci.org/davidsowerby/q3c-testUtil)
+[![Coverage Status](https://coveralls.io/repos/github/davidsowerby/q3c-testUtil/badge.svg?branch=master)](https://coveralls.io/github/davidsowerby/q3c-testUtil?branch=master)
+
 Some general purpose test utilities
 
 #Download
