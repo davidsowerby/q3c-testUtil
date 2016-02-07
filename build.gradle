@@ -152,7 +152,7 @@ task release(type: uk.q3c.gradle.ReleaseTask) {
 
 bintray {
     user = 'dsowerby'
-    key = bintrayKey
+    key = getKeyForBintray()
 
     publications = ['mavenStuff'] //When uploading Maven-based publication files
     dryRun = false  //project.ext.bintrayDryRun //Whether to run this as dry-run, without deploying
