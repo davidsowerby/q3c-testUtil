@@ -25,16 +25,20 @@ buildscript {
     }
 }
 
+plugins {
+    id 'groovy'
+    id 'jacoco'
+    id 'project-report'
+    id 'com.github.kt3k.coveralls' version '2.4.0x'
+}
 
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
 apply plugin: 'java'
-apply plugin: 'project-report'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'idea'
 apply plugin: 'q3c-release'
-
 
 description = 'Generic test utilities'
 group = 'uk.q3c'
@@ -96,6 +100,9 @@ dependencies {
 task wrapper(type: Wrapper) {
     gradleVersion = '2.10'
 }
+
+jacocoTestReport.reports.xml.enabled = true
+
 
 publishing {
     publications {
