@@ -2,5 +2,19 @@ language: java
 jdk:
   - oraclejdk8
 
-  after_success:
-    - gradle jacocoTestReport coveralls
+sudo: false
+env:
+  - TERM=dumb
+
+before_install:
+  - chmod +x gradlew
+
+install:
+  - ./gradlew assemble
+
+script:
+  - ./gradlew check
+
+after_success:
+  - ./gradlew jacocoTestReport coveralls
+
