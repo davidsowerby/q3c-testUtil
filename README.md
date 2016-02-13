@@ -1,5 +1,6 @@
 #q3c-testUtil
 
+[![License](http://img.shields.io/badge/license-MIT-blue.svg)](http://www.opensource.org/licenses/Apache-2.0)
 [![Build Status](https://travis-ci.org/davidsowerby/q3c-testUtil.svg?branch=master)](https://travis-ci.org/davidsowerby/q3c-testUtil)
 [![Coverage Status](https://coveralls.io/repos/github/davidsowerby/q3c-testUtil/badge.svg?branch=master)](https://coveralls.io/github/davidsowerby/q3c-testUtil?branch=master)
 
