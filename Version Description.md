@@ -1,1 +1,1 @@
-Separated from master project and prepared for Travis.  Some additional methods for test resources from current module
+Finally got the Travis and Coveralls (Jacoco coverage) working
