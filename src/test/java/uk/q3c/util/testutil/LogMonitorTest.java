@@ -11,19 +11,15 @@
 
 package uk.q3c.util.testutil;
 
-import com.mycila.testing.junit.MycilaJunitRunner;
-import com.mycila.testing.plugin.guice.GuiceContext;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(MycilaJunitRunner.class)
-@GuiceContext({})
+
 public class LogMonitorTest {
 
     private static Logger log = LoggerFactory.getLogger(LogMonitorTest.class);
