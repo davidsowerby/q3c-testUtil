@@ -1,6 +1,8 @@
-package uk.q3c.util.testutil
+
 
 import spock.lang.Specification
+import uk.q3c.util.testutil.FileTestUtil
+import uk.q3c.util.testutil.TestResource
 
 /**
  * Created by David Sowerby on 04 Feb 2016
