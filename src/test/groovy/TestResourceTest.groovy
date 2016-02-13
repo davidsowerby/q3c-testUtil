@@ -1,5 +1,3 @@
-
-
 import spock.lang.Specification
 import uk.q3c.util.testutil.InvalidProjectPathException
 import uk.q3c.util.testutil.TestResource
@@ -10,15 +8,24 @@ import uk.q3c.util.testutil.TestResource
 class TestResourceTest extends Specification {
 
     def "testJavaRootDir"() {
+        given:
+        File f = new File(new File('.'),'src/test/java')
+        println f.getCanonicalPath()
+
         expect:
-        TestResource.testJavaRootDir('q3c-testUtil').equals(new File('/home/david/git/q3c-testUtil/src/test/java'))
-        TestResource.testJavaRootDir().equals(new File('/home/david/git/q3c-testUtil/src/test/java'))
+        TestResource.testJavaRootDir('q3c-testUtil').getCanonicalPath().equals(f.getCanonicalPath())
+        TestResource.testJavaRootDir().getCanonicalPath().equals(f.getCanonicalPath())
     }
 
     def "test resource"() {
+        given:
+
+        File f = new File(new File('.'),'src/test/resources')
+        println f.getCanonicalPath()
+
         expect:
-        TestResource.testResourceRootDir('q3c-testUtil').equals(new File('/home/david/git/q3c-testUtil/src/test/resources'))
-        TestResource.testResourceRootDir().equals(new File('/home/david/git/q3c-testUtil/src/test/resources'))
+        TestResource.testResourceRootDir('q3c-testUtil').getCanonicalPath().equals(f.getCanonicalPath())
+        TestResource.testResourceRootDir().getCanonicalPath().equals(f.getCanonicalPath())
     }
 
     def "testJavaRootDir with invalid module name"() {
