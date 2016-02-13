@@ -17,7 +17,7 @@ repositories {
 ```
 
 ```
-'uk.q3c:q3c-testUtil:0.8.0'
+'uk.q3c:q3c-testUtil:0.8.1'
 ```
 ##Maven
 
@@ -33,13 +33,18 @@ repositories {
 <dependency>
 	<groupId>uk.q3c</groupId>
 	<artifactId>q3c-testUtil</artifactId>
-	<version>0.8.0</version>
+	<version>0.8.1</version>
 </dependency>
 ```
 ##Direct
 
 [ ![Download](https://api.bintray.com/packages/dsowerby/maven/q3c-testUtil/images/download.svg) ](https://bintray.com/dsowerby/maven/q3c-testUtil/_latestVersion)
 
+#q3c-testUtil
 
+![License](http://img.shields.io/:license-apache-blue.svg)
+[![Build Status](https://travis-ci.org/davidsowerby/q3c-testUtil.svg?branch=master)](https://travis-ci.org/davidsowerby/q3c-testUtil)
+[![Coverage Status](https://coveralls.io/repos/github/davidsowerby/q3c-testUtil/badge.svg?branch=master)](https://coveralls.io/github/davidsowerby/q3c-testUtil?branch=master)
 
+Some general purpose test utilities
 
