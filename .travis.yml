@@ -6,15 +6,12 @@ sudo: false
 env:
   - TERM=dumb
 
-before_install:
-  - chmod +x gradlew
-
 install:
-  - ./gradlew assemble
+  - gradle assemble
 
 script:
-  - ./gradlew check
+  - gradle check
 
 after_success:
-  - ./gradlew jacocoTestReport coveralls
+  - gradle jacocoTestReport coveralls
 
