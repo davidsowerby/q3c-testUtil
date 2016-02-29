@@ -1,11 +1,8 @@
-
+package uk.q3c.util.testutil
 
 import ch.qos.logback.classic.spi.LoggingEvent
 import ch.qos.logback.core.spi.FilterReply
 import spock.lang.Specification
-import uk.q3c.util.testutil.ClassAcceptFilter
-import uk.q3c.util.testutil.LogMonitor
-import uk.q3c.util.testutil.TestResource
 
 /**
  * Created by David Sowerby on 04 Feb 2016

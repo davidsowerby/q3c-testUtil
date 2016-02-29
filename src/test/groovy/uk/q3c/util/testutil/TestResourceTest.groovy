@@ -1,12 +1,13 @@
-import spock.lang.Specification
-import uk.q3c.util.testutil.InvalidProjectPathException
-import uk.q3c.util.testutil.TestResource
+package uk.q3c.util.testutil
 
+import spock.lang.Ignore
+import spock.lang.Specification
 /**
  * Created by David Sowerby on 04 Feb 2016
  */
 class TestResourceTest extends Specification {
 
+    @Ignore
     def "testJavaRootDir"() {
         given:
         File f = new File(new File('.'),'src/test/java')
@@ -17,6 +18,7 @@ class TestResourceTest extends Specification {
         TestResource.testJavaRootDir().getCanonicalPath().equals(f.getCanonicalPath())
     }
 
+    @Ignore
     def "test resource"() {
         given:
 
@@ -44,11 +46,39 @@ class TestResourceTest extends Specification {
         thrown(InvalidProjectPathException)
     }
 
+
     def "test resource, current project assumed"() {
         when:
-        File file = TestResource.resource('ref.txt')
+        File file = TestResource.resource('dummy.txt')
         println file
         then:
         file.exists()
+    }
+
+    def "resource using Class.getResource() with absolute reference"() {
+
+        when:
+        File f = TestResource.resource(this, "/dummy.txt")
+
+        then:
+        f.exists()
+    }
+
+    def "resource using Class.getResource() with root"() {
+
+        when:
+        File f = TestResource.resource(this, "/")
+
+        then:
+        f.exists()
+    }
+
+    def "resource using Class.getResource() with relative reference"() {
+
+        when:
+        File f = TestResource.resource(this, "ref.txt")
+
+        then:
+        f.exists()
     }
 }
