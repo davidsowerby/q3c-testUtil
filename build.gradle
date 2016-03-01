@@ -21,7 +21,7 @@ buildscript {
     dependencies {
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.5'
         classpath 'commons-io:commons-io:2.4'
-        classpath 'uk.q3c:q3c-gradle:0.7.3'
+        classpath 'uk.q3c:q3c-gradle:0.7.4'
     }
 }
 
@@ -39,10 +39,12 @@ apply plugin: 'java'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'idea'
 apply plugin: 'q3c-release'
+apply from: 'gradle/versioning.gradle'
 
 description = 'Generic test utilities'
 group = 'uk.q3c'
-version = versionFromFile(project.projectDir)
+ext.majorMinorVersion = '0.8'
+
 
 ext.assertjVersion = '3.3.0'
 ext.commonsLangVersion = '3.3.2'
@@ -99,6 +101,11 @@ task wrapper(type: Wrapper) {
     gradleVersion = '2.10'
 }
 
+task printVersion() {
+    println version
+}
+
+
 jacocoTestReport.reports.xml.enabled = true
 
 
@@ -143,17 +150,7 @@ javadoc {
     failOnError = false
 }
 
-task verifyRelease(type: uk.q3c.gradle.VerificationTask) {
 
-}
-
-task prepareRelease(type: uk.q3c.gradle.PrepareReleaseTask) {
-
-}
-
-task release(type: uk.q3c.gradle.ReleaseTask) {
-
-}
 
 bintray {
     user = 'dsowerby'
@@ -186,16 +183,6 @@ bintray {
     }
 }
 
-def versionFromFile(File projectRoot) {
-    def Properties props = new Properties()
-    def propFile = new File(projectRoot, 'version.properties')
-    if (propFile.canRead()) {
-        props.load(new FileInputStream(propFile))
-    }
-    String key = "CURRENT_VERSION"
-    println(projectRoot.getName() + ": version is " + props[key])
-    props[key]
-}
 //Need to identify whether platform has the Bintray key (Travis etc will not)
 def getKeyForBintray() {
     def keyValue = System.getenv("BINTRAY")
