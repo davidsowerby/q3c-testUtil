@@ -183,7 +183,7 @@ bintray {
     }
 }
 
-
+//~~~~~~~~~~~~~ this should be extracted to separate plugin for re-use ~~~~~~~~~~~~~~~~~~~~~~
 sourceSets {
     integrationTest {
         java.srcDir file('src/integTest/java')
@@ -201,6 +201,10 @@ task integrationTest(type: Test) {
     classpath = sourceSets.integrationTest.runtimeClasspath
     reports.html.destination = file("$buildDir/reports/integrationTests")
 }
+
+check.dependsOn integrationTest
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 //Need to identify whether platform has the Bintray key (Travis etc will not)
 def getKeyForBintray() {
