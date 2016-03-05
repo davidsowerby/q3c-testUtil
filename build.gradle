@@ -183,6 +183,25 @@ bintray {
     }
 }
 
+
+sourceSets {
+    integrationTest {
+        java.srcDir file('src/integTest/java')
+        groovy.srcDir file('src/integTest/groovy')
+        resources.srcDir file('src/integTest/resources')
+        compileClasspath = sourceSets.main.output + configurations.testRuntime
+        runtimeClasspath = output + compileClasspath
+    }
+}
+
+task integrationTest(type: Test) {
+    description = 'Runs the integration tests'
+    group = 'verification'
+    testClassesDir = sourceSets.integrationTest.output.classesDir
+    classpath = sourceSets.integrationTest.runtimeClasspath
+    reports.html.destination = file("$buildDir/reports/integrationTests")
+}
+
 //Need to identify whether platform has the Bintray key (Travis etc will not)
 def getKeyForBintray() {
     def keyValue = System.getenv("BINTRAY")
