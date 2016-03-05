@@ -29,6 +29,7 @@ plugins {
     id 'groovy'
     id 'jacoco'
     id 'project-report'
+    id 'org.sonarqube' version "1.2"
     id 'com.github.kt3k.coveralls' version '2.4.0x'
     id 'org.unbroken-dome.test-sets' version '1.2.0'
 }
@@ -187,8 +188,6 @@ bintray {
         }
     }
 }
-
-
 
 //Need to identify whether platform has the Bintray key (Travis etc will not)
 def getKeyForBintray() {
