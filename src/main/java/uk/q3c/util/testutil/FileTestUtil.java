@@ -23,10 +23,18 @@ import java.util.List;
 import java.util.Optional;
 
 /**
+ * Provides utilities in support of testing with files, primarily providing ways of comparing two files (typically a refrence and a test output)
  *
  * Created by David Sowerby on 16/11/14.
  */
 public class FileTestUtil {
+
+    /**
+     * Static utility only
+     */
+    private FileTestUtil() {
+
+    }
 
     /**
      * Make a line by line comparison, of all lines, of the text files provided at {@code file1} and {@code file2}.  If they are not
@@ -35,15 +43,10 @@ public class FileTestUtil {
      * line contains a timestamp. Even when a line is ignored for comparison, it must exist in both files for match
      * to succeed.
      *
-     * @param ignore
-     *         optional lines to ignore, index starting at 0
-     * @param file1
-     *         the first file used in comparison
-     * @param file2
-     *         the second file used in comparison
-     *
+     * @param ignore optional lines to ignore, index starting at 0
+     * @param file1  the first file used in comparison
+     * @param file2  the second file used in comparison
      * @return an empty Optional if match successful, otherwise a description of the failure
-     *
      * @throws IOException
      */
     public static Optional<String> compare(File file1, File file2, Integer... ignore) throws IOException {
@@ -57,15 +60,10 @@ public class FileTestUtil {
      * given in {@code ignore} are not compared - this can be useful, for example, where a line contains a timestamp. Even when a line is ignored for
      * comparison, it must exist in both files for match to succeed.
      *
-     * @param ignore
-     *         optional lines to ignore, index starting at 0
-     * @param file1
-     *         the first file used in comparison
-     * @param file2
-     *         the second file used in comparison
-     *
+     * @param ignore optional lines to ignore, index starting at 0
+     * @param file1  the first file used in comparison
+     * @param file2  the second file used in comparison
      * @return an empty Optional if match successful, otherwise a description of the failure
-     *
      * @throws IOException
      */
     public static Optional<String> compareFirst(int linesToCompare, File file1, File file2, Integer... ignore) throws IOException {
@@ -79,7 +77,6 @@ public class FileTestUtil {
                          .get(0);
         }
         List<Integer> ignores = Arrays.asList(ignore);
-        boolean pass = true;
 
         int max = list1.size() < list2.size() ? list1.size() : list2.size();
         //
@@ -89,7 +86,6 @@ public class FileTestUtil {
                 String item2 = list2.get(i);
 
                 if (!item1.equals(item2)) {
-                    pass = false;
                     String comment = "line " + i + " is not the same. '" + item1 + "' ... '" + item2 + '\'';
                     return Optional.of(comment);
                 }

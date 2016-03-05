@@ -38,11 +38,18 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class TestResource {
 
     /**
+     * Static utility only
+     */
+    private TestResource() {
+
+    }
+
+    /**
      * Returns a File object representing the 'src/test/java' folder within the {@code moduleName}
      *
      * @param moduleName the IDEA module (Eclipse sub-project) for which the test root is required
      * @return File object for the test root directory
-     * @Deprecated use {@link #resource(Object, String)}
+     * @deprecated use {@link #resource(Object, String)}
      */
     @Deprecated
     public static File testJavaRootDir(@Nonnull String moduleName) {
@@ -53,7 +60,7 @@ public class TestResource {
      * Returns a File object representing the 'src/test/java' folder within the current module(IDEA) sub-project(Eclipse)
      *
      * @return File object for the test root directory
-     * @Deprecated use {@link #resource(Object, String)}
+     * @deprecated use {@link #resource(Object, String)}
      */
     @Deprecated
     public static File testJavaRootDir() {
@@ -100,7 +107,7 @@ public class TestResource {
      *
      * @param moduleName the IDEA module (Eclipse sub-project) for which the test root is required
      * @return File object for the test root directory
-     * @Deprecated use {@link #resource(Object, String)}
+     * @deprecated use {@link #resource(Object, String)}
      */
     @Deprecated
     public static File testResourceRootDir(@Nonnull String moduleName) {
@@ -112,7 +119,7 @@ public class TestResource {
      * sub-project (Eclipse)
      *
      * @return File object for the test root directory
-     * @Deprecated use {@link #resource(Object, String)}
+     * @deprecated use {@link #resource(Object, String)}
      */
     @Deprecated
     public static File testResourceRootDir() {
@@ -140,7 +147,7 @@ public class TestResource {
      *
      * @param filename the file name to use
      * @return File object representing a file from the src/test/resources folder of the current module (IDEA) / sub-project (Eclipse).
-     * @Deprecated use {@link #resource(Object, String)}
+     * @deprecated use {@link #resource(Object, String)}
      */
     @Deprecated
     public static File resource(@Nonnull String filename) {
