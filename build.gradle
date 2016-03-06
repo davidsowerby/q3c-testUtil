@@ -1,3 +1,9 @@
+import org.ajoberstar.grgit.Commit
+import org.ajoberstar.grgit.Grgit
+
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
 /*
  *
  *  * Copyright (c) 2016. David Sowerby
@@ -32,6 +38,7 @@ plugins {
     id 'org.sonarqube' version "1.2"
     id 'com.github.kt3k.coveralls' version '2.4.0x'
     id 'org.unbroken-dome.test-sets' version '1.2.0'
+    id 'org.ajoberstar.grgit' version '1.4.2'
 }
 
 apply plugin: 'com.jfrog.bintray'
@@ -112,6 +119,26 @@ task printVersion() {
     println version
 }
 
+task createBuildInfoFile << {
+    def buildInfoFile = new File("$buildDir/build-info.properties")
+    String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"))
+    def Grgit repo = Grgit.open(project.file('.'))
+    def Commit commit = repo.head()
+    Properties properties = new Properties()
+    properties.setProperty('version', project.version.toString())
+    properties.setProperty('timestamp', timestamp)
+    properties.setProperty('githash', commit.getId())
+    properties.store(buildInfoFile.newWriter(), null)
+}
+
+
+jar {
+    dependsOn createBuildInfoFile
+    from(buildDir) {
+        include 'build-info.properties'
+        into 'META-INF'
+    }
+}
 
 jacocoTestReport.reports.xml.enabled = true
 
