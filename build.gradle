@@ -1,5 +1,6 @@
 import org.ajoberstar.grgit.Commit
 import org.ajoberstar.grgit.Grgit
+import se.bjurr.gitchangelog.plugin.gradle.GitChangelogTask
 
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -39,6 +40,7 @@ plugins {
     id 'com.github.kt3k.coveralls' version '2.4.0x'
     id 'org.unbroken-dome.test-sets' version '1.2.0'
     id 'org.ajoberstar.grgit' version '1.4.2'
+    id 'se.bjurr.gitchangelog.git-changelog-gradle-plugin' version '1.21'
 }
 
 apply plugin: 'com.jfrog.bintray'
@@ -53,6 +55,7 @@ apply from: 'gradle/jacocogate.gradle'
 
 description = 'Generic test utilities'
 group = 'uk.q3c'
+version = '0.9.0.140'
 ext.majorMinorVersion = '0.8'
 
 
@@ -215,6 +218,11 @@ bintray {
             }
         }
     }
+}
+
+task gitChangelog(type: GitChangelogTask) {
+    filePath = "CHANGELOG.md";
+    templateContent = new File('changelog.mustache').getText('UTF-8');
 }
 
 //Need to identify whether platform has the Bintray key (Travis etc will not)

@@ -10,7 +10,7 @@ public class DummyJavaIntegrationTest {
 
     @Test
     public void makeItPass() throws Exception {
-        assert (true);
+        assert true;
 
     }
 }

@@ -89,4 +89,23 @@ class FileTestUtilTest extends Specification {
         then:
         result.isPresent()
     }
+
+    def "compare with blank lines removed, only 'valid' lines compared"() {
+        given:
+        File ref = TestResource.resource(this, 'ref.txt')
+        File extraBlankLines = TestResource.resource(this, 'extraBlankLines.txt')
+
+        when:
+        Optional<String> result = FileTestUtil.compareIgnoreBlankLines(ref, extraBlankLines)
+
+        then:
+        !result.isPresent()
+
+        when:
+        result = FileTestUtil.compare(ref, extraBlankLines)
+
+        then:
+        result.isPresent()
+
+    }
 }
