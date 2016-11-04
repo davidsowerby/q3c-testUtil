@@ -2,7 +2,7 @@
 .idea
 .settings
 bin
-build
+build/*
 
 logs
 out
