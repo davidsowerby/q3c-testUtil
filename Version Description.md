@@ -1,1 +1,0 @@
-Finally got the Travis and Coveralls (Jacoco coverage) working
