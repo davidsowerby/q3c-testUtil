@@ -13,14 +13,13 @@
 
 
 buildscript {
-    ext.kaytee_plugin_version = "0.12.10.0"
+    ext.kaytee_plugin_version = "0.15.0.0"
     repositories {
         jcenter()
         mavenLocal()
     }
 
     dependencies {
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.5'
         classpath 'commons-io:commons-io:2.4'
         classpath "uk.q3c.kaytee:kaytee-plugin:$kaytee_plugin_version"
     }
@@ -46,8 +45,7 @@ ext.guavaVersion = '19.0'
 ext.slf4jVersion = '1.7.6'
 
 kaytee {
-    baseVersion = "0.5.1.0"
-
+    baseVersion = "0.5.1.1"
 }
 
 bintray {
@@ -61,7 +59,6 @@ repositories {
 }
 
 dependencies {
-//	compile 'uk.q3c.krail:krail:0.9.8'
 
     //logging
     compile 'org.slf4j:slf4j-api:' + slf4jVersion
