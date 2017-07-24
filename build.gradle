@@ -13,7 +13,7 @@
 
 
 buildscript {
-    ext.kaytee_plugin_version = "0.15.0.0"
+    ext.kaytee_plugin_version = "0.15.2.0"
     repositories {
         jcenter()
         mavenLocal()
@@ -45,7 +45,7 @@ ext.guavaVersion = '19.0'
 ext.slf4jVersion = '1.7.6'
 
 kaytee {
-    baseVersion = "0.5.1.1"
+    baseVersion = "0.5.1.2"
 }
 
 bintray {
