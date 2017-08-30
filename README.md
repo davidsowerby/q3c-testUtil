@@ -1,7 +1,7 @@
-#q3c-testUtil
+# q3c-testutils
 
 ![License](http://img.shields.io/:license-apache-blue.svg)
-[ ![Download](https://api.bintray.com/packages/dsowerby/maven/q3c-testUtil/images/download.svg) ](https://bintray.com/dsowerby/maven/q3c-testUtil/_latestVersion)
+[ ![Download](https://api.bintray.com/packages/dsowerby/maven/q3c-testutils/images/download.svg) ](https://bintray.com/dsowerby/maven/q3c-testutils/_latestVersion)
 
 Some general purpose test utilities
 
@@ -15,7 +15,7 @@ repositories {
 ```
 
 ```
-'uk.q3c:q3c-testUtil:x.x.x.x'
+'uk.q3c:q3c-testutils:x.x.x.x'
 ```
 
 

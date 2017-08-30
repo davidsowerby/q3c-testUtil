@@ -5,3 +5,6 @@ build/*
 classes
 .classpath
 .project
+
+*.iml
+*.ipr
