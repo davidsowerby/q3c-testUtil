@@ -13,7 +13,7 @@
 
 
 buildscript {
-    ext.kaytee_plugin_version = "0.18.4.1"
+    ext.kaytee_plugin_version = "0.18.10.0"
     repositories {
         jcenter()
         mavenLocal()
@@ -40,7 +40,7 @@ ext.slf4jVersion = '1.7.6'
 
 kaytee {
     version {
-        number = "0.11.0.3"
+        number = "0.11.0.4"
     }
 }
 
